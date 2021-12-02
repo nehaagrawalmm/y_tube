@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.y_tube">
    <application
-        android:label="y_tube"
+       android:usesCleartextTraffic="true"
+       android:label="y_tube"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
