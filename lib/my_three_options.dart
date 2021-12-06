@@ -87,10 +87,22 @@ class _MyThreeOptionsState extends State<MyThreeOptions> {
                                     children: snapshot.data!.docs.map((doc) {
                                        var videoDesc=(doc.data() as Map)["videoDesc"].toString();
                                       return const Card(
-                                        child: ListTile(
-                                          title:  Text('Item '),
+                                      child:InkWell(
+                                        splashColor: Colors.blue,
+                                       /* onTap: () {
+                                          print('Card tapped.');
+                                        },*/
+                                        child: SizedBox(
+                                          width: 300,
+                                          height: 100,
+                                          child: Text('videoDesc'),
                                         ),
+                                      ),
                                       );
+
+
+
+
                                     }).toList(),
                                   );
                                 }

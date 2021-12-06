@@ -1,25 +1,63 @@
 import 'package:flutter/material.dart';
+import 'package:y_tube/data/video.dart';
 import 'package:y_tube/firebase_init.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:y_tube/ui/you_tube_main.dart';
 
-void main() {
+Future<void> main() async {
+
+  late List<Video> videos;
+
+  Future<List<Video>> readDataFromFirestore()  async {
+    final db = FirebaseFirestore.instance;
+    List<Video> myList = [];
+
+    return await db.collection("videolist").get().then((querySnapshot) {
+      for (var result in querySnapshot.docs) {
+        myList.add(Video.fromMap(result.data()));
+
+      }
+      videos=myList;
+      print("neha inside async");
+      return myList;
+    });
+
+  }
+
   WidgetsFlutterBinding.ensureInitialized();
-  Firebase.initializeApp();
+  await Firebase.initializeApp();
+  await readDataFromFirestore();
 
- // runApp(FireApp());
-  runApp( FireApp());
+  runApp(
+     MyApp(videos)
+  );
+
+
+
 }
 
-/*lass MyApp extends StatelessWidget{
+
+
+class MyApp extends StatelessWidget {
+  late List<Video> videos;
+
+  MyApp(List<Video> readDataFromFirestore, {Key? key}) : super(key: key){
+      videos=readDataFromFirestore;
+   }
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp( //use MaterialApp() widget like this
-        home:  FireApp() //create new widget class for this 'home' to
-      // escape 'No MediaQuery widget found' error
+    return MaterialApp(
+
+      title: 'Passing Data',
+        home: YouTubeScreen(videos:videos),
     );
   }
-}*/
 
+
+
+}
 
 
