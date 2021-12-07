@@ -35,8 +35,8 @@ class _VideoAppState extends State<VideoWidget> {
   @override
   Widget build(BuildContext context) {
     return  SizedBox(
-        width: 300,
-        height: 100,
+        width: 500,
+        height: 300,
       child:Scaffold(
         body: Center(
           child: _controller.value.isInitialized
