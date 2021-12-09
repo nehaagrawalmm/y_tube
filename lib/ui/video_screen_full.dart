@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:y_tube/data/video.dart';
+import 'package:y_tube/ui/video_widget.dart';
 
 class VideoScreenFull extends StatelessWidget {
   const VideoScreenFull({Key? key}) : super(key: key);
@@ -14,10 +15,14 @@ class VideoScreenFull extends StatelessWidget {
       appBar: AppBar(
         title: Text(video.videoName),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(video.videoDesc),
-      ),
+      body: Center(
+          child: Column(children: <Widget>[
+        Text(video.videoDesc),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: VideoWidget(video),
+        ),
+      ])),
     );
   }
 }

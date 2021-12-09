@@ -54,7 +54,7 @@ class YouTubeScreen extends StatelessWidget {
                     splashColor: Colors.blue,
                     child: SizedBox(
                       width: 500,
-                      height: 400,
+                      height: 500,
                       child: Column(
                         children: <Widget>[
                           ListTile(
@@ -77,6 +77,7 @@ class YouTubeScreen extends StatelessWidget {
                                 );
                               }),
                           VideoWidget(videos[index]),
+                          Text(videos[index].videoDesc,maxLines: 2,)
                         ],
                       ),
                     ),
